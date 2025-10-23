@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PR Fruits - Freshness You Can Trust</title>
+  <style>
+    /* ---------- GLOBAL ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #f7fff7;
+      color: #333;
+    }
+
+    header {
+      background-color: #2e8b57;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    header img {
+      width: 100px;
+      height: auto;
+    }
+
+    header h1 {
+      font-size: 2.2em;
+      margin-top: 10px;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      font-size: 1.1em;
+      font-style: italic;
+      color: #f9f9f9;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      margin: 0 15px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffeb3b;
+    }
+
+    /* ---------- SECTIONS ---------- */
+    section {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    #home {
+      background: linear-gradient(to right, #a8e063, #56ab2f);
+      color: white;
+      padding: 100px 20px;
+    }
+
+    #home h2 {
+      font-size: 2.5em;
+      margin-bottom: 15px;
+    }
+
+    #home p {
+      font-size: 1.2em;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6em;
+    }
+
+    /* ---------- FRUITS SECTION ---------- */
+    #fruits {
+      background-color: #ffffff;
+    }
+
+    #fruits h2 {
+      color: #2e8b57;
+      font-size: 2em;
+      margin-bottom: 30px;
+    }
+
+    .fruit-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      padding: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .fruit-card {
+      background-color: #f1fdf3;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .fruit-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    .fruit-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .fruit-card h3 {
+      color: #2e8b57;
+      margin: 15px 0 5px;
+    }
+
+    .fruit-card p {
+      font-size: 0.95em;
+      color: #555;
+    }
+
+    /* ---------- CONTACT SECTION ---------- */
+    #contact {
+      background-color: #e9f5ee;
+    }
+
+    #contact h2 {
+      color: #2e8b57;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .contact-info {
+      font-size: 1.1em;
+      line-height: 2em;
+    }
+
+    .contact-info a {
+      color: #2e8b57;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .contact-info a:hover {
+      color: #1b5e20;
+    }
+
+    footer {
+      background-color: #2e8b57;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 0.9em;
+      margin-top: 40px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="logopr.jpg" alt="PR Fruits Logo" />
+    <h1>PR FRUITS</h1>
+    <p>"Freshness You Can Trust."</p>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#fruits">Our Fruits</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HOME SECTION -->
+  <section id="home">
+    <h2>Welcome to PR Fruits 🍎</h2>
+    <p>At PR Fruits, we deliver the freshest, handpicked fruits directly from local farms. 
+    Experience the taste of nature with every bite and enjoy the best quality produce you can trust.</p>
+  </section>
+
+  <!-- FRUITS SECTION -->
+  <section id="fruits">
+    <h2>Our Fresh Collection</h2>
+    <div class="fruit-container">
+      <div class="fruit-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Red_Apple.jpg" alt="Apple">
+        <h3>Apples</h3>
+        <p>Sweet and crunchy apples packed with nutrients.</p>
+      </div>
+      <div class="fruit-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Culinary_fruits_front_view.jpg" alt="Banana">
+        <h3>Bananas</h3>
+        <p>Rich in potassium and perfect for a quick energy boost.</p>
+      </div>
+      <div class="fruit-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Orange-Fruit-Pieces.jpg" alt="Oranges">
+        <h3>Oranges</h3>
+        <p>Juicy and vitamin-rich, great for your morning juice.</p>
+      </div>
+      <div class="fruit-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Strawberries.jpg" alt="Strawberries">
+        <h3>Strawberries</h3>
+        <p>Deliciously sweet and perfect for desserts.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <div class="contact-info">
+      📍 <a href="https://maps.app.goo.gl/zGjxAHiBzzacKcvR9" target="_blank">Find us on Google Maps</a><br>
+      📸 Instagram: <a href="https://www.instagram.com/pr__fruits" target="_blank">@pr__fruits</a><br>
+      ✉️ Email: <a href="mailto:prfruits2025@gmail.com">prfruits2025@gmail.com</a>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 PR Fruits — Freshness You Can Trust.
+  </footer>
+
+</body>
+</html>

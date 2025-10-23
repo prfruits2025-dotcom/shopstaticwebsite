@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PR Fruits - Freshness You Can Trust</title>
+  <style>
+    * { box-sizing: border-box; margin:0; padding:0; font-family: "Poppins", system-ui, Arial, sans-serif; scroll-behavior: smooth; }
+    body { background:#f6fff6; color:#222; }
+    header {
+      background:#2e8b57; color:#fff; text-align:center; padding:18px 10px; position:sticky; top:0; z-index:1000;
+      box-shadow:0 4px 10px rgba(0,0,0,0.15);
+    }
+    header img { width:86px; height:auto; border-radius:50%; object-fit:cover; display:inline-block; vertical-align:middle; }
+    header h1 { font-size:1.9rem; margin-top:10px; color:#fff; letter-spacing:1px; }
+    header p { font-style:italic; color:#f8fff8; margin-top:6px; }
+    nav { margin-top:10px; }
+    nav a { color:#fff; text-decoration:none; margin:0 12px; font-weight:600; transition:color .18s; }
+    nav a:hover { color:#ffeb3b; }
+    section { padding:72px 18px; text-align:center; }
+    #home { background:linear-gradient(90deg,#a8e063,#56ab2f); color:#fff; padding:92px 18px; }
+    #home h2 { font-size:2.4rem; margin-bottom:12px; }
+    #home p { max-width:760px; margin:0 auto; line-height:1.6; font-size:1.05rem; }
+
+    #fruits { background:#fff; }
+    #fruits h2 { color:#2e8b57; font-size:1.9rem; margin-bottom:20px; }
+    .fruit-container {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px; max-width:1160px; margin:0 auto; padding:10px;
+    }
+    .fruit-card {
+      background:#f2fdf3; border-radius:14px; overflow:hidden;
+      box-shadow:0 6px 18px rgba(16,80,36,0.06); transition:transform .22s, box-shadow .22s;
+      display:flex; flex-direction:column; align-items:stretch;
+    }
+    .fruit-card:hover { transform:translateY(-6px); box-shadow:0 12px 28px rgba(16,80,36,0.12); }
+    .fruit-card img { width:100%; height:160px; object-fit:cover; display:block; background:#e8f6ea; }
+    .fruit-card .meta { padding:12px 14px 18px; flex:1; display:flex; flex-direction:column; justify-content:flex-start; }
+    .fruit-card h3 { color:#186a3b; margin-bottom:6px; font-size:1.05rem; }
+    .fruit-card p { color:#455; font-size:0.95rem; line-height:1.4; }
+
+    #contact { background:#e9f5ee; }
+    #contact h2 { color:#2e8b57; font-size:1.9rem; margin-bottom:12px; }
+    .contact-info { font-size:1.03rem; line-height:1.9; max-width:760px; margin:0 auto; }
+    .contact-info a { color:#2e8b57; text-decoration:none; font-weight:700; }
+    footer { background:#2e8b57; color:#fff; text-align:center; padding:14px 10px; font-size:0.95rem; margin-top:30px; }
+
+    @media (max-width:600px) {
+      header h1 { font-size:1.4rem; }
+      .fruit-card img { height:140px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="logopr.jpg" alt="PR Fruits Logo" />
+    <h1>PR FRUITS</h1>
+    <p>"Freshness You Can Trust."</p>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#fruits">Our Fruits</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HOME -->
+  <section id="home" aria-labelledby="home-title">
+    <h2 id="home-title">Welcome to PR Fruits 🍎</h2>
+    <p>At PR Fruits we bring a wide selection of fresh, handpicked fruits — local favorites and premium imports — delivered with care. Browse our range below and click contact to reach us.</p>
+  </section>
+
+  <!-- FRUITS -->
+  <section id="fruits" aria-labelledby="fruits-title">
+    <h2 id="fruits-title">Our Fresh Collection</h2>
+    <div class="fruit-container">
+      <!-- Each card uses data-name for fallback. Live URL used; if it fails, placeholder will show fruit name. -->
+      <div class="fruit-card">
+        <img data-name="Banana Robusta" src="Banana Robusta.jpeg" alt="Banana Robusta">
+        <div class="meta"><h3>Banana Robusta</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Banana Elaichi" src="bananaelaichi.jpg" alt="Banana Elaichi">
+        <div class="meta"><h3>Banana Elaichi</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Banana Red" src="bananared.jpeg" alt="Banana Red">
+        <div class="meta"><h3>Banana Red</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Banana Nendra" src="Banana Nendra.jpeg" alt="Banana Nendra">
+        <div class="meta"><h3>Banana Nendra</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Custard Apple" src="Custard Apple.jpeg" alt="Custard apple">
+        <div class="meta"><h3>Custard Apple</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Dragon Fruit" src="Dragon Fruit.jpeg" alt="Dragon fruit">
+        <div class="meta"><h3>Dragon Fruit</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Apple Washington" src="Apple Washington.jpeg" alt="Apple Washington">
+        <div class="meta"><h3>Apple Washington</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Apple Royal Gala NZ" src="Apple Royal Gala (New Zealand).jpeg" alt="Apple Royal Gala NZ">
+        <div class="meta"><h3>Apple Royal Gala (New Zealand)</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Apple Royal Gala France" src="Apple Royal Gala (France).jpeg" alt="Apple Royal Gala France">
+        <div class="meta"><h3>Apple Royal Gala (France)</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Apple Green" src="Apple Green.jpeg" alt="Apple Green">
+        <div class="meta"><h3>Apple Green</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Apple Fuji" src="Apple Fuji.jpeg" alt="Apple Fuji">
+        <div class="meta"><h3>Apple Fuji</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="South African Pears" src="pears.jpg" alt="South African Pears">
+        <div class="meta"><h3>South African Pears</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="South African Mandarin" src="South African Mandarin.jpeg" alt="South African Mandarin">
+        <div class="meta"><h3>South African Mandarin</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Citrus" src="Citrus.jpeg" alt="Citrus">
+        <div class="meta"><h3>Citrus</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Mosambi" src="Mosambi.jpeg" alt="Mosambi">
+        <div class="meta"><h3>Mosambi</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Nagpur Orange" src="Nagpur Orange.jpeg" alt="Nagpur Orange">
+        <div class="meta"><h3>Nagpur Orange</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Anar Small" src="Anar Small.jpeg" alt="Anar small">
+        <div class="meta"><h3>Anar Small</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Anar Big" src="Anar Big.jpeg" alt="Anar big">
+        <div class="meta"><h3>Anar Big</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Red Globe" src="Red Globe.jpeg" alt="Red Globe">
+        <div class="meta"><h3>Red Globe</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Blueberry" src="Blueberry.jpeg" alt="Blueberry">
+        <div class="meta"><h3>Blueberry</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Zespri Kiwi" src="Zespri Kiwi.jpeg" alt="Zespri Kiwi">
+        <div class="meta"><h3>Zespri Kiwi</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Zespri Golden Kiwi" src="Zespri Golden Kiwi.jpeg" alt="Zespri Golden Kiwi">
+        <div class="meta"><h3>Zespri Golden Kiwi</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Tanzania Avocado" src="Tanzania Avocado.jpeg" alt="Tanzania Avocado">
+        <div class="meta"><h3>Tanzania Avocado</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Local Avocado" src="Local Avocado.jpeg" alt="Local Avocado">
+        <div class="meta"><h3>Local Avocado</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Watermelon" src="Watermelon.jpeg" alt="Watermelon">
+        <div class="meta"><h3>Watermelon</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Guava" src="Guava.jpeg" alt="Guava">
+        <div class="meta"><h3>Guava</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Sapota" src="Sapota.jpeg" alt="Sapota">
+        <div class="meta"><h3>Sapota</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Pineapple" src="Pineapple.jpeg" alt="Pineapple">
+        <div class="meta"><h3>Pineapple</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Amla" src="Amla.jpeg" alt="Amla">
+        <div class="meta"><h3>Amla</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Lagoon" src="Lagoon.jpeg" alt="Lagoon">
+        <div class="meta"><h3>Lagoon</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Plums" src="Plums.jpeg" alt="Plums">
+        <div class="meta"><h3>Plums</h3></div>
+      </div>
+
+      <div class="fruit-card">
+        <img data-name="Persimmon" src="Persimmon.jpeg" alt="Persimmon">
+        <div class="meta"><h3>Persimmon</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" aria-labelledby="contact-title">
+    <h2 id="contact-title">Contact Us</h2>
+    <div class="contact-info">
+      📍 <a href="https://maps.app.goo.gl/zGjxAHiBzzacKcvR9" target="_blank" rel="noopener">Find us on Google Maps</a><br>
+      📸 Instagram: <a href="https://www.instagram.com/pr__fruits" target="_blank" rel="noopener">@pr__fruits</a><br>
+      ✉️ Email: <a href="mailto:prfruits2025@gmail.com">prfruits2025@gmail.com</a>
+    </div>
+  </section>
+
+  <footer>© 2025 PR Fruits — Freshness You Can Trust.</footer>
+
+  <script>
+    // If a live image fails to load, replace with a readable placeholder that shows the fruit name.
+    // This avoids broken images and helps you see which ones need manual replacement later.
+    (function(){
+      const cards = document.querySelectorAll('.fruit-card img');
+      cards.forEach(img => {
+        // onload noop - but set onerror handler
+        img.onerror = function() {
+          // Prevent infinite loop if placeholder fails
+          this.onerror = null;
+          const name = encodeURIComponent(this.dataset.name || 'Image');
+          // using a simple placeholder service with the fruit name
+          this.src = 'https://via.placeholder.com/400x300?text=' + name;
+          this.alt = this.dataset.name || 'fruit';
+        };
+      });
+    })();
+  </script>
+
+</body>
+</html>
