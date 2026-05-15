@@ -14,6 +14,9 @@
       --green-pale: #e8f5ec;
       --lime: #c6f135;
       --gold: #f5c842;
+      --mango-orange: #ff8c00;
+      --mango-yellow: #ffcc00;
+      --mango-light: #fff8e1;
       --cream: #fdfcf7;
       --white: #ffffff;
       --dark: #111a14;
@@ -21,442 +24,252 @@
       --radius: 20px;
       --shadow: 0 20px 60px rgba(26,92,53,0.12);
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'DM Sans', system-ui, sans-serif;
-      background: var(--cream);
-      color: var(--dark);
-      overflow-x: hidden;
-    }
-
-    /* ───── CURSOR ───── */
-    .cursor {
-      width: 12px; height: 12px;
-      background: var(--lime);
-      border-radius: 50%;
-      position: fixed; top: 0; left: 0;
-      pointer-events: none; z-index: 9999;
-      transform: translate(-50%,-50%);
-      transition: transform 0.1s, width 0.25s, height 0.25s, background 0.25s;
-      mix-blend-mode: multiply;
-    }
-    .cursor-ring {
-      width: 40px; height: 40px;
-      border: 2px solid var(--green-mid);
-      border-radius: 50%;
-      position: fixed; top: 0; left: 0;
-      pointer-events: none; z-index: 9998;
-      transform: translate(-50%,-50%);
-      transition: transform 0.18s ease-out, width 0.25s, height 0.25s, opacity 0.25s;
-      opacity: 0.6;
-    }
+    body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--cream); color: var(--dark); overflow-x: hidden; }
+    .cursor { width: 12px; height: 12px; background: var(--lime); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: transform 0.1s, width 0.25s, height 0.25s, background 0.25s; mix-blend-mode: multiply; }
+    .cursor-ring { width: 40px; height: 40px; border: 2px solid var(--green-mid); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: transform 0.18s ease-out, width 0.25s, height 0.25s, opacity 0.25s; opacity: 0.6; }
     .cursor.hovered { width: 20px; height: 20px; background: var(--gold); }
     .cursor-ring.hovered { width: 60px; height: 60px; opacity: 0.3; }
-
-    /* ───── HEADER ───── */
-    header {
-      background: var(--green-deep);
-      color: var(--white);
-      position: sticky; top: 0; z-index: 1000;
-      padding: 0 32px;
-      height: 72px;
-      display: flex; align-items: center; justify-content: space-between;
-      box-shadow: 0 4px 30px rgba(0,0,0,0.18);
-      transition: height 0.3s, padding 0.3s;
-    }
+    header { background: var(--green-deep); color: var(--white); position: sticky; top: 0; z-index: 1000; padding: 0 32px; height: 72px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 30px rgba(0,0,0,0.18); transition: height 0.3s, padding 0.3s; }
     header.scrolled { height: 60px; }
-
-    .logo-wrap {
-      display: flex; align-items: center; gap: 14px; text-decoration: none;
-    }
-    .logo-wrap img {
-      width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
-      border: 2px solid var(--lime);
-      transition: transform 0.3s;
-    }
+    .logo-wrap { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .logo-wrap img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid var(--lime); transition: transform 0.3s; }
     .logo-wrap:hover img { transform: rotate(-8deg) scale(1.08); }
-    .logo-text h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.35rem; color: var(--white); letter-spacing: 2px; line-height: 1;
-    }
+    .logo-text h1 { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--white); letter-spacing: 2px; line-height: 1; }
     .logo-text p { font-size: 0.7rem; color: var(--green-light); font-style: italic; margin-top: 2px; }
-
     nav { display: flex; align-items: center; gap: 6px; }
-    nav a {
-      color: rgba(255,255,255,0.75);
-      text-decoration: none;
-      font-size: 0.9rem; font-weight: 500;
-      padding: 8px 16px; border-radius: 30px;
-      transition: background 0.2s, color 0.2s;
-      position: relative;
-    }
-    nav a:hover, nav a.active {
-      color: var(--dark);
-      background: var(--lime);
-    }
-
-    /* ───── MOBILE NAV ───── */
-    .nav-toggle {
-      display: none; background: none; border: none;
-      color: white; cursor: pointer; padding: 6px;
-      flex-direction: column; gap: 5px; align-items: flex-end;
-    }
-    .nav-toggle span {
-      display: block; height: 2px; background: white; border-radius: 2px;
-      transition: width 0.3s;
-    }
+    nav a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.9rem; font-weight: 500; padding: 8px 16px; border-radius: 30px; transition: background 0.2s, color 0.2s; }
+    nav a:hover, nav a.active { color: var(--dark); background: var(--lime); }
+    .nav-toggle { display: none; background: none; border: none; color: white; cursor: pointer; padding: 6px; flex-direction: column; gap: 5px; align-items: flex-end; }
+    .nav-toggle span { display: block; height: 2px; background: white; border-radius: 2px; transition: width 0.3s; }
     .nav-toggle span:nth-child(1) { width: 24px; }
     .nav-toggle span:nth-child(2) { width: 18px; }
     .nav-toggle span:nth-child(3) { width: 24px; }
-    .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); width: 24px; }
-    .nav-toggle.open span:nth-child(2) { opacity: 0; }
-    .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); width: 24px; }
-
-    .mobile-nav {
-      display: none;
-      position: fixed; top: 60px; left: 0; right: 0;
-      background: var(--green-deep);
-      padding: 20px 24px;
-      flex-direction: column; gap: 4px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      z-index: 999;
-    }
+    .mobile-nav { display: none; position: fixed; top: 60px; left: 0; right: 0; background: var(--green-deep); padding: 20px 24px; flex-direction: column; gap: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 999; }
     .mobile-nav.open { display: flex; }
-    .mobile-nav a {
-      color: rgba(255,255,255,0.85);
-      text-decoration: none; font-size: 1.05rem; font-weight: 500;
-      padding: 12px 16px; border-radius: 10px;
-      transition: background 0.2s, color 0.2s;
-    }
+    .mobile-nav a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 1.05rem; font-weight: 500; padding: 12px 16px; border-radius: 10px; transition: background 0.2s, color 0.2s; }
     .mobile-nav a:hover { background: var(--lime); color: var(--dark); }
-
-    /* ───── HERO ───── */
-    #home {
-      background: linear-gradient(135deg, #1a5c35 0%, #2e8b57 40%, #56ab2f 80%, #a8e063 100%);
-      min-height: 92vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center;
-      padding: 80px 24px;
-      position: relative; overflow: hidden;
-    }
-
-    /* Floating decorative blobs */
-    #home::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 60% 50% at 20% 80%, rgba(198,241,53,0.18) 0%, transparent 60%),
-                  radial-gradient(ellipse 40% 40% at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: var(--lime);
-      padding: 6px 18px; border-radius: 30px;
-      font-size: 0.82rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
-      margin-bottom: 28px;
-      backdrop-filter: blur(8px);
-      animation: fadeSlideDown 0.7s ease both;
-    }
+    #home { background: linear-gradient(135deg, #1a5c35 0%, #2e8b57 40%, #56ab2f 80%, #a8e063 100%); min-height: 92vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 24px; position: relative; overflow: hidden; }
+    #home::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 20% 80%, rgba(198,241,53,0.18) 0%, transparent 60%), radial-gradient(ellipse 40% 40% at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 60%); pointer-events: none; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: var(--lime); padding: 6px 18px; border-radius: 30px; font-size: 0.82rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 28px; backdrop-filter: blur(8px); animation: fadeSlideDown 0.7s ease both; }
     .hero-badge span { width: 6px; height: 6px; background: var(--lime); border-radius: 50%; animation: pulse 1.5s ease-in-out infinite; }
-
-    #home h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.4rem, 6vw, 4.2rem);
-      color: var(--white);
-      line-height: 1.1;
-      margin-bottom: 20px;
-      animation: fadeSlideDown 0.8s 0.1s ease both;
-    }
+    #home h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 6vw, 4.2rem); color: var(--white); line-height: 1.1; margin-bottom: 20px; animation: fadeSlideDown 0.8s 0.1s ease both; }
     #home h2 em { color: var(--lime); font-style: normal; }
-
-    #home > p {
-      max-width: 640px; color: rgba(255,255,255,0.85);
-      line-height: 1.7; font-size: 1.08rem;
-      animation: fadeSlideDown 0.8s 0.2s ease both;
-      margin-bottom: 40px;
-    }
-
-    .hero-ctas {
-      display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
-      animation: fadeSlideDown 0.8s 0.3s ease both;
-    }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 14px 30px; border-radius: 50px;
-      font-size: 0.95rem; font-weight: 600;
-      text-decoration: none; transition: all 0.25s;
-      cursor: pointer; border: none; letter-spacing: 0.3px;
-    }
+    #home > p { max-width: 640px; color: rgba(255,255,255,0.85); line-height: 1.7; font-size: 1.08rem; animation: fadeSlideDown 0.8s 0.2s ease both; margin-bottom: 40px; }
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; animation: fadeSlideDown 0.8s 0.3s ease both; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 30px; border-radius: 50px; font-size: 0.95rem; font-weight: 600; text-decoration: none; transition: all 0.25s; cursor: pointer; border: none; letter-spacing: 0.3px; }
     .btn-primary { background: var(--lime); color: var(--dark); }
     .btn-primary:hover { background: var(--gold); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
     .btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.4); }
     .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; transform: translateY(-2px); }
-
-    /* Floating fruit emojis */
-    .float-fruit {
-      position: absolute; font-size: 2rem; opacity: 0.18;
-      animation: floatFruit 6s ease-in-out infinite;
-      pointer-events: none; user-select: none;
-    }
+    .float-fruit { position: absolute; font-size: 2rem; opacity: 0.18; animation: floatFruit 6s ease-in-out infinite; pointer-events: none; user-select: none; }
     .float-fruit:nth-child(1) { top: 12%; left: 8%; animation-delay: 0s; }
     .float-fruit:nth-child(2) { top: 60%; left: 4%; animation-delay: 1.5s; font-size: 1.5rem; }
     .float-fruit:nth-child(3) { top: 20%; right: 6%; animation-delay: 0.8s; font-size: 2.5rem; }
     .float-fruit:nth-child(4) { top: 70%; right: 8%; animation-delay: 2.2s; }
     .float-fruit:nth-child(5) { top: 40%; left: 2%; animation-delay: 3s; font-size: 1.8rem; }
     .float-fruit:nth-child(6) { top: 85%; right: 15%; animation-delay: 1s; font-size: 1.4rem; }
-
-    /* stats strip */
-    .hero-stats {
-      display: flex; gap: 40px; margin-top: 60px; flex-wrap: wrap; justify-content: center;
-      animation: fadeSlideDown 0.8s 0.4s ease both;
-    }
+    .hero-stats { display: flex; gap: 40px; margin-top: 60px; flex-wrap: wrap; justify-content: center; animation: fadeSlideDown 0.8s 0.4s ease both; }
     .stat { text-align: center; }
     .stat strong { display: block; font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--lime); }
     .stat span { font-size: 0.82rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 1px; }
+    .section-label { display: inline-flex; align-items: center; gap: 8px; color: var(--green-mid); font-size: 0.78rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 14px; }
+    .section-label::before, .section-label::after { content: ''; display: block; height: 1px; width: 30px; background: var(--green-bright); }
 
-    /* ───── SECTION LABEL ───── */
-    .section-label {
-      display: inline-flex; align-items: center; gap: 8px;
-      color: var(--green-mid); font-size: 0.78rem; font-weight: 700;
-      letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 14px;
-    }
-    .section-label::before, .section-label::after {
-      content: ''; display: block; height: 1px; width: 30px; background: var(--green-bright);
-    }
-
-    /* ───── FRUITS SECTION ───── */
-    #fruits {
-      background: var(--white);
+    /* ── MANGO SPOTLIGHT ── */
+    #mango-section {
+      background: linear-gradient(135deg, #fff3cd 0%, #ffe082 30%, #ffb300 70%, #ff8f00 100%);
       padding: 90px 24px;
-    }
-    #fruits .section-head {
-      text-align: center; margin-bottom: 48px;
-    }
-    #fruits h2 {
-      font-family: 'Playfair Display', serif;
-      color: var(--green-deep); font-size: clamp(1.8rem, 4vw, 2.8rem);
-      line-height: 1.15; margin-bottom: 14px;
-    }
-    #fruits .subtitle {
-      color: var(--text-soft); font-size: 1rem; max-width: 500px; margin: 0 auto 32px;
-    }
-
-    /* Search + Filter */
-    .filter-bar {
-      display: flex; flex-wrap: wrap; gap: 12px;
-      align-items: center; justify-content: center;
-      margin-bottom: 36px;
-    }
-    .search-wrap {
-      position: relative; flex: 1 1 240px; max-width: 340px;
-    }
-    .search-wrap input {
-      width: 100%; padding: 12px 18px 12px 44px;
-      border: 2px solid #dff0e4; border-radius: 50px;
-      font-size: 0.93rem; font-family: inherit; outline: none;
-      background: var(--green-pale); transition: border 0.2s, box-shadow 0.2s;
-      color: var(--dark);
-    }
-    .search-wrap input:focus { border-color: var(--green-mid); box-shadow: 0 0 0 4px rgba(46,139,87,0.1); }
-    .search-wrap::before { content: '🔍'; position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-size: 0.9rem; }
-
-    .filter-tags { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
-    .tag {
-      padding: 8px 18px; border-radius: 30px;
-      border: 2px solid #dff0e4;
-      background: var(--green-pale);
-      font-size: 0.83rem; font-weight: 600; color: var(--text-soft);
-      cursor: pointer; transition: all 0.2s;
-      font-family: inherit;
-    }
-    .tag:hover, .tag.active { background: var(--green-mid); border-color: var(--green-mid); color: white; }
-
-    /* Fruit Grid */
-    .fruit-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 22px; max-width: 1200px; margin: 0 auto;
-    }
-
-    .fruit-card {
-      background: var(--cream);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(26,92,53,0.07);
-      transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.28s;
-      display: flex; flex-direction: column;
-      cursor: pointer;
       position: relative;
-      border: 1.5px solid transparent;
+      overflow: hidden;
     }
-    .fruit-card::after {
-      content: '';
-      position: absolute; inset: 0;
-      border-radius: var(--radius);
-      border: 2px solid var(--lime);
-      opacity: 0; transition: opacity 0.25s;
+    #mango-section::before {
+      content: '🥭';
+      position: absolute;
+      font-size: 12rem;
+      opacity: 0.07;
+      top: -20px;
+      right: -30px;
       pointer-events: none;
     }
-    .fruit-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 50px rgba(26,92,53,0.15); }
-    .fruit-card:hover::after { opacity: 1; }
-
-    .fruit-card .img-wrap {
-      position: relative; overflow: hidden; height: 165px;
+    #mango-section::after {
+      content: '🥭';
+      position: absolute;
+      font-size: 8rem;
+      opacity: 0.07;
+      bottom: -10px;
+      left: -20px;
+      pointer-events: none;
     }
-    .fruit-card img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
+    .mango-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.3);
+      border: 2px solid rgba(255,255,255,0.5);
+      color: #4a2800;
+      padding: 6px 18px; border-radius: 30px;
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .mango-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+    .mango-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: #3e1c00;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .mango-text h2 em { color: #b85c00; font-style: normal; }
+    .mango-text p { color: #5a3200; line-height: 1.7; font-size: 1.02rem; margin-bottom: 20px; }
+    .mango-benefits {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 20px 0 28px;
+    }
+    .mango-benefit {
+      background: rgba(255,255,255,0.35);
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: 12px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #4a2800;
+    }
+    .mango-varieties {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+    .mango-variety-tag {
+      background: rgba(255,255,255,0.4);
+      border: 1.5px solid rgba(255,255,255,0.6);
+      color: #3e1c00;
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+    .mango-img-wrap {
+      position: relative;
+    }
+    .mango-img-wrap img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      border-radius: 24px;
+      box-shadow: 0 30px 70px rgba(180, 80, 0, 0.35);
       transition: transform 0.4s ease;
     }
+    .mango-img-wrap img:hover { transform: scale(1.03); }
+    .mango-glow {
+      position: absolute;
+      inset: -15px;
+      border-radius: 32px;
+      background: radial-gradient(ellipse at center, rgba(255,200,0,0.3) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .king-badge {
+      position: absolute;
+      top: -16px;
+      right: -16px;
+      background: #fff;
+      color: #b85c00;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 30px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      border: 2px solid #ffcc00;
+    }
+
+    /* ── FRUITS SECTION ── */
+    #fruits { background: var(--white); padding: 90px 24px; }
+    #fruits .section-head { text-align: center; margin-bottom: 48px; }
+    #fruits h2 { font-family: 'Playfair Display', serif; color: var(--green-deep); font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.15; margin-bottom: 14px; }
+    #fruits .subtitle { color: var(--text-soft); font-size: 1rem; max-width: 500px; margin: 0 auto 32px; }
+    .filter-bar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: center; margin-bottom: 36px; }
+    .search-wrap { position: relative; flex: 1 1 240px; max-width: 340px; }
+    .search-wrap input { width: 100%; padding: 12px 18px 12px 44px; border: 2px solid #dff0e4; border-radius: 50px; font-size: 0.93rem; font-family: inherit; outline: none; background: var(--green-pale); transition: border 0.2s, box-shadow 0.2s; color: var(--dark); }
+    .search-wrap input:focus { border-color: var(--green-mid); box-shadow: 0 0 0 4px rgba(46,139,87,0.1); }
+    .search-wrap::before { content: '🔍'; position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-size: 0.9rem; }
+    .filter-tags { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+    .tag { padding: 8px 18px; border-radius: 30px; border: 2px solid #dff0e4; background: var(--green-pale); font-size: 0.83rem; font-weight: 600; color: var(--text-soft); cursor: pointer; transition: all 0.2s; font-family: inherit; }
+    .tag:hover, .tag.active { background: var(--green-mid); border-color: var(--green-mid); color: white; }
+    .fruit-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 22px; max-width: 1200px; margin: 0 auto; }
+    .fruit-card { background: var(--cream); border-radius: var(--radius); overflow: hidden; box-shadow: 0 4px 20px rgba(26,92,53,0.07); transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.28s; display: flex; flex-direction: column; cursor: pointer; position: relative; border: 1.5px solid transparent; }
+    .fruit-card::after { content: ''; position: absolute; inset: 0; border-radius: var(--radius); border: 2px solid var(--lime); opacity: 0; transition: opacity 0.25s; pointer-events: none; }
+    .fruit-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 50px rgba(26,92,53,0.15); }
+    .fruit-card:hover::after { opacity: 1; }
+    .fruit-card .img-wrap { position: relative; overflow: hidden; height: 165px; }
+    .fruit-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
     .fruit-card:hover img { transform: scale(1.08); }
-
-    /* quick-view overlay */
-    .card-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(26,92,53,0.75) 0%, transparent 60%);
-      opacity: 0; transition: opacity 0.28s;
-      display: flex; align-items: flex-end; padding: 14px;
-    }
+    .card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,92,53,0.75) 0%, transparent 60%); opacity: 0; transition: opacity 0.28s; display: flex; align-items: flex-end; padding: 14px; }
     .fruit-card:hover .card-overlay { opacity: 1; }
-    .card-overlay span {
-      color: white; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.5px;
-      background: rgba(255,255,255,0.15); padding: 5px 12px; border-radius: 20px;
-      backdrop-filter: blur(4px);
-    }
-
-    .fruit-card .meta {
-      padding: 14px 16px 18px;
-      flex: 1;
-    }
-    .fruit-card h3 {
-      color: var(--green-deep); font-size: 0.95rem; font-weight: 600;
-      line-height: 1.3;
-    }
-
-    /* empty state */
-    .empty-state {
-      grid-column: 1/-1; text-align: center;
-      padding: 60px 20px; color: var(--text-soft);
-    }
+    .card-overlay span { color: white; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.5px; background: rgba(255,255,255,0.15); padding: 5px 12px; border-radius: 20px; backdrop-filter: blur(4px); }
+    .fruit-card .meta { padding: 14px 16px 18px; flex: 1; }
+    .fruit-card h3 { color: var(--green-deep); font-size: 0.95rem; font-weight: 600; line-height: 1.3; }
+    .empty-state { grid-column: 1/-1; text-align: center; padding: 60px 20px; color: var(--text-soft); }
     .empty-state .icon { font-size: 3rem; margin-bottom: 12px; }
-    .empty-state p { font-size: 1.05rem; }
 
-    /* ───── LIGHTBOX ───── */
-    .lightbox {
-      position: fixed; inset: 0; z-index: 9000;
-      background: rgba(10,25,15,0.88);
-      backdrop-filter: blur(12px);
-      display: flex; align-items: center; justify-content: center;
-      padding: 20px;
-      opacity: 0; pointer-events: none; transition: opacity 0.3s;
-    }
+    /* ── LIGHTBOX ── */
+    .lightbox { position: fixed; inset: 0; z-index: 9000; background: rgba(10,25,15,0.88); backdrop-filter: blur(12px); display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
     .lightbox.open { opacity: 1; pointer-events: all; }
-    .lightbox-card {
-      background: var(--white); border-radius: 24px;
-      max-width: 420px; width: 100%; overflow: hidden;
-      transform: scale(0.9); transition: transform 0.3s;
-      box-shadow: 0 40px 100px rgba(0,0,0,0.4);
-    }
+    .lightbox-card { background: var(--white); border-radius: 24px; max-width: 460px; width: 100%; overflow: hidden; transform: scale(0.9); transition: transform 0.3s; box-shadow: 0 40px 100px rgba(0,0,0,0.4); max-height: 90vh; overflow-y: auto; }
     .lightbox.open .lightbox-card { transform: scale(1); }
-    .lightbox-card img { width: 100%; height: 280px; object-fit: cover; display: block; }
-    .lightbox-body { padding: 24px 28px 30px; }
-    .lightbox-body h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--green-deep); margin-bottom: 8px; }
-    .lightbox-body p { color: var(--text-soft); line-height: 1.6; font-size: 0.95rem; }
-    .lightbox-close {
-      position: absolute; top: 20px; right: 20px;
-      width: 42px; height: 42px; border-radius: 50%;
-      background: rgba(255,255,255,0.12); border: none;
-      color: white; font-size: 1.3rem; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s, transform 0.2s;
-    }
+    .lightbox-card img { width: 100%; height: 260px; object-fit: cover; display: block; }
+    .lightbox-body { padding: 22px 28px 28px; }
+    .lightbox-body h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--green-deep); margin-bottom: 6px; }
+    .lightbox-body .lb-desc { color: var(--text-soft); line-height: 1.6; font-size: 0.93rem; margin-bottom: 16px; }
+    .benefits-title { font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--green-mid); margin-bottom: 10px; }
+    .benefits-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .benefit-pill { background: var(--green-pale); color: var(--green-deep); border: 1px solid #c3e6cc; border-radius: 30px; padding: 5px 13px; font-size: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 5px; }
+    .lightbox-close { position: absolute; top: 20px; right: 20px; width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.12); border: none; color: white; font-size: 1.3rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, transform 0.2s; }
     .lightbox-close:hover { background: rgba(255,255,255,0.2); transform: rotate(90deg); }
 
-    /* ───── CONTACT ───── */
-    #contact {
-      background: linear-gradient(160deg, var(--green-pale) 0%, #d4f0df 100%);
-      padding: 90px 24px;
-      text-align: center;
-    }
-    #contact h2 {
-      font-family: 'Playfair Display', serif;
-      color: var(--green-deep); font-size: clamp(1.8rem, 4vw, 2.6rem);
-      margin-bottom: 10px;
-    }
+    /* ── CONTACT ── */
+    #contact { background: linear-gradient(160deg, var(--green-pale) 0%, #d4f0df 100%); padding: 90px 24px; text-align: center; }
+    #contact h2 { font-family: 'Playfair Display', serif; color: var(--green-deep); font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 10px; }
     #contact .subtitle { color: var(--text-soft); margin-bottom: 48px; font-size: 1rem; }
-
-    .contact-cards {
-      display: flex; flex-wrap: wrap; gap: 20px;
-      justify-content: center; max-width: 780px; margin: 0 auto;
-    }
-    .contact-card {
-      background: var(--white); border-radius: 18px;
-      padding: 28px 32px;
-      flex: 1 1 200px;
-      box-shadow: 0 8px 30px rgba(26,92,53,0.08);
-      transition: transform 0.25s, box-shadow 0.25s;
-      text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; gap: 12px;
-    }
+    .contact-cards { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; max-width: 780px; margin: 0 auto; }
+    .contact-card { background: var(--white); border-radius: 18px; padding: 28px 32px; flex: 1 1 200px; box-shadow: 0 8px 30px rgba(26,92,53,0.08); transition: transform 0.25s, box-shadow 0.25s; text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; gap: 12px; }
     .contact-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(26,92,53,0.14); }
-    .contact-card .icon-wrap {
-      width: 56px; height: 56px; border-radius: 16px;
-      background: var(--green-pale);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem;
-      transition: background 0.25s;
-    }
+    .contact-card .icon-wrap { width: 56px; height: 56px; border-radius: 16px; background: var(--green-pale); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; transition: background 0.25s; }
     .contact-card:hover .icon-wrap { background: var(--green-mid); }
     .contact-card strong { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-soft); }
     .contact-card span { color: var(--green-deep); font-weight: 600; font-size: 0.95rem; text-align: center; }
-
-    /* ───── FOOTER ───── */
-    footer {
-      background: var(--green-deep); color: rgba(255,255,255,0.7);
-      text-align: center; padding: 28px 20px;
-      font-size: 0.88rem;
-    }
+    footer { background: var(--green-deep); color: rgba(255,255,255,0.7); text-align: center; padding: 28px 20px; font-size: 0.88rem; }
     footer strong { color: var(--lime); }
-
-    /* ───── BACK TO TOP ───── */
-    .back-top {
-      position: fixed; bottom: 28px; right: 28px;
-      width: 48px; height: 48px; border-radius: 50%;
-      background: var(--green-mid); color: white;
-      border: none; cursor: pointer; font-size: 1.2rem;
-      box-shadow: 0 8px 24px rgba(46,139,87,0.35);
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.3s, transform 0.3s;
-      z-index: 800; display: flex; align-items: center; justify-content: center;
-    }
+    .back-top { position: fixed; bottom: 28px; right: 28px; width: 48px; height: 48px; border-radius: 50%; background: var(--green-mid); color: white; border: none; cursor: pointer; font-size: 1.2rem; box-shadow: 0 8px 24px rgba(46,139,87,0.35); opacity: 0; transform: translateY(20px); transition: opacity 0.3s, transform 0.3s; z-index: 800; display: flex; align-items: center; justify-content: center; }
     .back-top.visible { opacity: 1; transform: translateY(0); }
     .back-top:hover { background: var(--green-deep); transform: translateY(-3px); }
 
-    /* ───── ANIMATIONS ───── */
-    @keyframes fadeSlideDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes floatFruit {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-22px) rotate(8deg); }
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.4); opacity: 0.6; }
-    }
-
-    /* reveal on scroll */
+    @keyframes fadeSlideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes floatFruit { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-22px) rotate(8deg); } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.4); opacity: 0.6; } }
+    @keyframes mangoFloat { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-12px) rotate(3deg); } }
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal.visible { opacity: 1; transform: none; }
 
-    /* ───── RESPONSIVE ───── */
+    @media (max-width: 768px) {
+      .mango-inner { grid-template-columns: 1fr; gap: 30px; }
+      .mango-img-wrap { order: -1; }
+      .mango-img-wrap img { height: 260px; }
+    }
     @media (max-width: 640px) {
       header { padding: 0 18px; }
       nav { display: none; }
@@ -464,531 +277,444 @@
       .hero-stats { gap: 24px; }
       .fruit-container { grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 14px; }
       .contact-cards { flex-direction: column; align-items: center; }
+      .mango-benefits { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Custom cursor -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-  <!-- ───── HEADER ───── -->
-  <header id="header">
-    <a href="#home" class="logo-wrap">
-      <img src="logopr.jpg" alt="PR Fruits Logo" />
-      <div class="logo-text">
-        <h1>PR FRUITS</h1>
-        <p>"Freshness You Can Trust."</p>
-      </div>
-    </a>
-
-    <nav id="nav">
-      <a href="#home" class="active">Home</a>
-      <a href="#fruits">Our Fruits</a>
-      <a href="#contact">Contact</a>
-    </nav>
-
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
-  </header>
-
-  <div class="mobile-nav" id="mobileNav">
-    <a href="#home">Home</a>
+<header id="header">
+  <a href="#home" class="logo-wrap">
+    <img src="logopr.jpg" alt="PR Fruits Logo" onerror="this.src='https://via.placeholder.com/44x44/1a5c35/c6f135?text=PR'" />
+    <div class="logo-text">
+      <h1>PR FRUITS</h1>
+      <p>"Freshness You Can Trust."</p>
+    </div>
+  </a>
+  <nav id="nav">
+    <a href="#home" class="active">Home</a>
+    <a href="#mango-section">Mangoes</a>
     <a href="#fruits">Our Fruits</a>
     <a href="#contact">Contact</a>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#home">Home</a>
+  <a href="#mango-section">Mangoes</a>
+  <a href="#fruits">Our Fruits</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="home" aria-labelledby="home-title">
+  <span class="float-fruit">🍎</span>
+  <span class="float-fruit">🍌</span>
+  <span class="float-fruit">🍊</span>
+  <span class="float-fruit">🍇</span>
+  <span class="float-fruit">🥝</span>
+  <span class="float-fruit">🍍</span>
+  <div class="hero-badge"><span></span>Est. 2018 · Bangalore's Finest<span></span></div>
+  <h2 id="home-title">Welcome to <em>PR Fruits</em> 🍎</h2>
+  <p>At PR Fruits we bring a wide selection of fresh, handpicked fruits — local favorites and premium imports — delivered with care. Browse our range below and click contact to reach us.</p>
+  <div class="hero-ctas">
+    <a href="#mango-section" class="btn btn-primary">🥭 Mango Season</a>
+    <a href="#fruits" class="btn btn-outline">Explore All Fruits ↓</a>
   </div>
+  <div class="hero-stats">
+    <div class="stat"><strong>30+</strong><span>Varieties</span></div>
+    <div class="stat"><strong>100%</strong><span>Fresh Daily</span></div>
+    <div class="stat"><strong>Since 2018</strong><span>Trusted Quality</span></div>
+  </div>
+</section>
 
-  <!-- ───── HERO ───── -->
-  <section id="home" aria-labelledby="home-title">
-    <span class="float-fruit">🍎</span>
-    <span class="float-fruit">🍌</span>
-    <span class="float-fruit">🍊</span>
-    <span class="float-fruit">🍇</span>
-    <span class="float-fruit">🥝</span>
-    <span class="float-fruit">🍍</span>
+<!-- MANGO SPOTLIGHT -->
+<section id="mango-section" aria-labelledby="mango-title">
+  <div style="text-align:center; margin-bottom: 50px;">
+    <div class="mango-badge">✨ Season Special ✨</div>
+  </div>
+  <div class="mango-inner">
+    <div class="mango-text">
+      <h2 id="mango-title">The King of Fruits — <em>Mangoes</em> 🥭</h2>
+      <p>Hand-selected from the finest orchards across India, our mangoes are a celebration of nature's sweetest gift. Rich, juicy, and bursting with flavour — there's a variety for every palate.</p>
 
-    <div class="hero-badge"><span></span>Est. 2025 · Bangalore's Finest<span></span></div>
-    <h2 id="home-title">Welcome to <em>PR Fruits</em> 🍎</h2>
-    <p>At PR Fruits we bring a wide selection of fresh, handpicked fruits — local favorites and premium imports — delivered with care. Browse our range below and click contact to reach us.</p>
+      <div class="mango-benefits">
+        <div class="mango-benefit">💊 Boosts Immunity</div>
+        <div class="mango-benefit">👁️ Improves Vision</div>
+        <div class="mango-benefit">🧠 Sharpens Memory</div>
+        <div class="mango-benefit">❤️ Heart Healthy</div>
+        <div class="mango-benefit">🌿 Rich in Vitamins</div>
+        <div class="mango-benefit">⚡ Natural Energy</div>
+      </div>
 
-    <div class="hero-ctas">
-      <a href="#fruits" class="btn btn-primary">Explore Our Fruits ↓</a>
-      <a href="#contact" class="btn btn-outline">Get in Touch</a>
-    </div>
-
-    <div class="hero-stats">
-      <div class="stat"><strong>30+</strong><span>Varieties</span></div>
-      <div class="stat"><strong>100%</strong><span>Fresh Daily</span></div>
-      <div class="stat"><strong>Local &amp; Imported</strong><span>Premium Quality</span></div>
-    </div>
-  </section>
-
-  <!-- ───── FRUITS ───── -->
-  <section id="fruits" aria-labelledby="fruits-title">
-    <div class="section-head">
-      <div class="section-label">Our Collection</div>
-      <h2 id="fruits-title">Fresh From the Source</h2>
-      <p class="subtitle">Handpicked local favourites and premium imports, stocked fresh every day.</p>
-
-      <!-- Filter bar -->
-      <div class="filter-bar">
-        <div class="search-wrap">
-          <input type="text" id="searchInput" placeholder="Search fruits…" aria-label="Search fruits" />
-        </div>
-        <div class="filter-tags" id="filterTags">
-          <button class="tag active" data-filter="all">All</button>
-          <button class="tag" data-filter="banana">Bananas</button>
-          <button class="tag" data-filter="apple">Apples</button>
-          <button class="tag" data-filter="orange">Citrus</button>
-          <button class="tag" data-filter="exotic">Exotic</button>
-        </div>
+      <p style="font-weight:600; color:#4a2800; margin-bottom:12px;">Varieties Available:</p>
+      <div class="mango-varieties">
+        <span class="mango-variety-tag">Badami</span>
+        <span class="mango-variety-tag">Benishan</span>
+        <span class="mango-variety-tag">Mallika</span>
+        <span class="mango-variety-tag">Raspuri</span>
+        <span class="mango-variety-tag">HimamPasand</span>
+        
       </div>
     </div>
 
-    <div class="fruit-container" id="fruitContainer">
-
-      <div class="fruit-card reveal" data-name="Banana Robusta" data-tags="banana">
-        <div class="img-wrap">
-          <img data-name="Banana Robusta" src="Banana Robusta.jpeg" alt="Banana Robusta">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Banana Robusta</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Banana Elaichi" data-tags="banana">
-        <div class="img-wrap">
-          <img data-name="Banana Elaichi" src="bananaelaichi.jpg" alt="Banana Elaichi">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Banana Elaichi</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Banana Red" data-tags="banana">
-        <div class="img-wrap">
-          <img data-name="Banana Red" src="bananared.jpeg" alt="Banana Red">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Banana Red</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Banana Nendra" data-tags="banana">
-        <div class="img-wrap">
-          <img data-name="Banana Nendra" src="Banana Nendra.jpeg" alt="Banana Nendra">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Banana Nendra</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Custard Apple" data-tags="exotic">
-        <div class="img-wrap">
-          <img data-name="Custard Apple" src="Custard Apple.jpeg" alt="Custard Apple">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Custard Apple</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Dragon Fruit" data-tags="exotic">
-        <div class="img-wrap">
-          <img data-name="Dragon Fruit" src="Dragon Fruit.jpeg" alt="Dragon Fruit">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Dragon Fruit</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Apple Washington" data-tags="apple">
-        <div class="img-wrap">
-          <img data-name="Apple Washington" src="Apple Washington.jpeg" alt="Apple Washington">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Apple Washington</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Apple Royal Gala (New Zealand)" data-tags="apple">
-        <div class="img-wrap">
-          <img data-name="Apple Royal Gala NZ" src="Apple Royal Gala (New Zealand).jpeg" alt="Apple Royal Gala NZ">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Apple Royal Gala (New Zealand)</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Apple Royal Gala (France)" data-tags="apple">
-        <div class="img-wrap">
-          <img data-name="Apple Royal Gala France" src="Apple Royal Gala (France).jpeg" alt="Apple Royal Gala France">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Apple Royal Gala (France)</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Apple Green" data-tags="apple">
-        <div class="img-wrap">
-          <img data-name="Apple Green" src="Apple Green.jpeg" alt="Apple Green">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Apple Green</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Apple Fuji" data-tags="apple">
-        <div class="img-wrap">
-          <img data-name="Apple Fuji" src="Apple Fuji.jpeg" alt="Apple Fuji">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Apple Fuji</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="South African Pears" data-tags="exotic">
-        <div class="img-wrap">
-          <img data-name="South African Pears" src="pears.jpg" alt="South African Pears">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>South African Pears</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="South African Mandarin" data-tags="orange">
-        <div class="img-wrap">
-          <img data-name="South African Mandarin" src="South African Mandarin.jpeg" alt="South African Mandarin">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>South African Mandarin</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Citrus" data-tags="orange">
-        <div class="img-wrap">
-          <img data-name="Citrus" src="Citrus.jpeg" alt="Citrus">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Citrus</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Mosambi" data-tags="orange">
-        <div class="img-wrap">
-          <img data-name="Mosambi" src="Mosambi.jpeg" alt="Mosambi">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Mosambi</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Nagpur Orange" data-tags="orange">
-        <div class="img-wrap">
-          <img data-name="Nagpur Orange" src="Nagpur Orange.jpeg" alt="Nagpur Orange">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Nagpur Orange</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Anar Small" data-tags="exotic">
-        <div class="img-wrap">
-          <img data-name="Anar Small" src="Anar Small.jpeg" alt="Anar Small">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Anar Small</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Anar Big" data-tags="exotic">
-        <div class="img-wrap">
-          <img data-name="Anar Big" src="Anar Big.jpeg" alt="Anar Big">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Anar Big</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Red Globe" data-tags="exotic">
-        <div class="img-wrap">
-          <img data-name="Red Globe" src="Red Globe.jpeg" alt="Red Globe">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Red Globe</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Blueberry" data-tags="exotic">
-        <div class="img-wrap">
-          <img data-name="Blueberry" src="Blueberry.jpeg" alt="Blueberry">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Blueberry</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Zespri Kiwi" data-tags="exotic">
-        <div class="img-wrap">
-          <img data-name="Zespri Kiwi" src="Zespri Kiwi.jpeg" alt="Zespri Kiwi">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Zespri Kiwi</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Zespri Golden Kiwi" data-tags="exotic">
-        <div class="img-wrap">
-          <img data-name="Zespri Golden Kiwi" src="Zespri Golden Kiwi.jpeg" alt="Zespri Golden Kiwi">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Zespri Golden Kiwi</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Tanzania Avocado" data-tags="exotic">
-        <div class="img-wrap">
-          <img data-name="Tanzania Avocado" src="Tanzania Avocado.jpeg" alt="Tanzania Avocado">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Tanzania Avocado</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Local Avocado" data-tags="exotic">
-        <div class="img-wrap">
-          <img data-name="Local Avocado" src="Local Avocado.jpeg" alt="Local Avocado">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Local Avocado</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Watermelon" data-tags="exotic">
-        <div class="img-wrap">
-          <img data-name="Watermelon" src="Watermelon.jpeg" alt="Watermelon">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Watermelon</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Guava" data-tags="exotic">
-        <div class="img-wrap">
-          <img data-name="Guava" src="Guava.jpeg" alt="Guava">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Guava</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Sapota" data-tags="exotic">
-        <div class="img-wrap">
-          <img data-name="Sapota" src="Sapota.jpeg" alt="Sapota">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Sapota</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Pineapple" data-tags="exotic">
-        <div class="img-wrap">
-          <img data-name="Pineapple" src="Pineapple.jpeg" alt="Pineapple">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Pineapple</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Amla" data-tags="exotic">
-        <div class="img-wrap">
-          <img data-name="Amla" src="Amla.jpeg" alt="Amla">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Amla</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Lagoon" data-tags="exotic">
-        <div class="img-wrap">
-          <img data-name="Lagoon" src="Lagoon.jpeg" alt="Lagoon">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Lagoon</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Plums" data-tags="exotic">
-        <div class="img-wrap">
-          <img data-name="Plums" src="Plums.jpeg" alt="Plums">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Plums</h3></div>
-      </div>
-
-      <div class="fruit-card reveal" data-name="Persimmon" data-tags="exotic">
-        <div class="img-wrap">
-          <img data-name="Persimmon" src="Persimmon.jpeg" alt="Persimmon">
-          <div class="card-overlay"><span>View Details</span></div>
-        </div>
-        <div class="meta"><h3>Persimmon</h3></div>
-      </div>
-
-    </div><!-- /fruit-container -->
-  </section>
-
-  <!-- ───── CONTACT ───── -->
-  <section id="contact" aria-labelledby="contact-title">
-    <div class="section-label">Reach Out</div>
-    <h2 id="contact-title">Contact Us</h2>
-    <p class="subtitle">We're just a tap away — visit us, DM us, or drop an email.</p>
-
-    <div class="contact-cards">
-      <a href="https://maps.app.goo.gl/zGjxAHiBzzacKcvR9" target="_blank" rel="noopener" class="contact-card reveal">
-        <div class="icon-wrap">📍</div>
-        <strong>Location</strong>
-        <span>Find us on Google Maps</span>
-      </a>
-      <a href="https://www.instagram.com/pr__fruits" target="_blank" rel="noopener" class="contact-card reveal">
-        <div class="icon-wrap">📸</div>
-        <strong>Instagram</strong>
-        <span>@pr__fruits</span>
-      </a>
-      <a href="mailto:prfruits2025@gmail.com" class="contact-card reveal">
-        <div class="icon-wrap">✉️</div>
-        <strong>Email</strong>
-        <span>prfruits2025@gmail.com</span>
-      </a>
+    <div class="mango-img-wrap">
+      <div class="mango-glow"></div>
+      
+      <img
+        src="Mango.avif"
+        alt="Fresh ripe mangoes"
+        style="animation: mangoFloat 5s ease-in-out infinite;"
+        onerror="this.src='Mango.jpg'"
+      />
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer>© 2025 <strong>PR Fruits</strong> — Freshness You Can Trust.</footer>
-
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Fruit detail">
-    <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
-    <div class="lightbox-card">
-      <img id="lightboxImg" src="" alt="" />
-      <div class="lightbox-body">
-        <h3 id="lightboxTitle"></h3>
-        <p id="lightboxDesc"></p>
+<!-- FRUITS -->
+<section id="fruits" aria-labelledby="fruits-title">
+  <div class="section-head">
+    <div class="section-label">Our Collection</div>
+    <h2 id="fruits-title">Fresh From the Source</h2>
+    <p class="subtitle">Handpicked local favourites and premium imports, stocked fresh every day.</p>
+    <div class="filter-bar">
+      <div class="search-wrap">
+        <input type="text" id="searchInput" placeholder="Search fruits…" aria-label="Search fruits" />
+      </div>
+      <div class="filter-tags" id="filterTags">
+        <button class="tag active" data-filter="all">All</button>
+        <button class="tag" data-filter="banana">Bananas</button>
+        <button class="tag" data-filter="apple">Apples</button>
+        <button class="tag" data-filter="orange">Citrus</button>
+        <button class="tag" data-filter="exotic">Exotic</button>
       </div>
     </div>
   </div>
 
-  <!-- Back to top -->
-  <button class="back-top" id="backTop" aria-label="Back to top">↑</button>
+  <div class="fruit-container" id="fruitContainer">
+    <div class="fruit-card reveal" data-name="Banana Robusta" data-tags="banana"><div class="img-wrap"><img data-name="Banana Robusta" src="Banana Robusta.jpeg" alt="Banana Robusta"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Banana Robusta</h3></div></div>
+    <div class="fruit-card reveal" data-name="Banana Elaichi" data-tags="banana"><div class="img-wrap"><img data-name="Banana Elaichi" src="bananaelaichi.jpg" alt="Banana Elaichi"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Banana Elaichi</h3></div></div>
+    <div class="fruit-card reveal" data-name="Banana Red" data-tags="banana"><div class="img-wrap"><img data-name="Banana Red" src="bananared.jpeg" alt="Banana Red"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Banana Red</h3></div></div>
+    <div class="fruit-card reveal" data-name="Banana Nendra" data-tags="banana"><div class="img-wrap"><img data-name="Banana Nendra" src="Banana Nendra.jpeg" alt="Banana Nendra"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Banana Nendra</h3></div></div>
+    <div class="fruit-card reveal" data-name="Custard Apple" data-tags="exotic"><div class="img-wrap"><img data-name="Custard Apple" src="Custard Apple.jpeg" alt="Custard Apple"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Custard Apple</h3></div></div>
+    <div class="fruit-card reveal" data-name="Dragon Fruit" data-tags="exotic"><div class="img-wrap"><img data-name="Dragon Fruit" src="Dragon Fruit.jpeg" alt="Dragon Fruit"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Dragon Fruit</h3></div></div>
+    <div class="fruit-card reveal" data-name="Apple Washington" data-tags="apple"><div class="img-wrap"><img data-name="Apple Washington" src="Apple Washington.jpeg" alt="Apple Washington"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Apple Washington</h3></div></div>
+    <div class="fruit-card reveal" data-name="Apple Royal Gala (New Zealand)" data-tags="apple"><div class="img-wrap"><img data-name="Apple Royal Gala NZ" src="Apple Royal Gala (New Zealand).jpeg" alt="Apple Royal Gala NZ"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Apple Royal Gala (New Zealand)</h3></div></div>
+    <div class="fruit-card reveal" data-name="Apple Royal Gala (France)" data-tags="apple"><div class="img-wrap"><img data-name="Apple Royal Gala France" src="Apple Royal Gala (France).jpeg" alt="Apple Royal Gala France"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Apple Royal Gala (France)</h3></div></div>
+    <div class="fruit-card reveal" data-name="Apple Green" data-tags="apple"><div class="img-wrap"><img data-name="Apple Green" src="Apple Green.jpeg" alt="Apple Green"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Apple Green</h3></div></div>
+    <div class="fruit-card reveal" data-name="Apple Fuji" data-tags="apple"><div class="img-wrap"><img data-name="Apple Fuji" src="Apple Fuji.jpeg" alt="Apple Fuji"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Apple Fuji</h3></div></div>
+    <div class="fruit-card reveal" data-name="South African Pears" data-tags="exotic"><div class="img-wrap"><img data-name="South African Pears" src="pears.jpg" alt="South African Pears"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>South African Pears</h3></div></div>
+    <div class="fruit-card reveal" data-name="South African Mandarin" data-tags="orange"><div class="img-wrap"><img data-name="South African Mandarin" src="South African Mandarin.jpeg" alt="South African Mandarin"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>South African Mandarin</h3></div></div>
+    <div class="fruit-card reveal" data-name="Citrus" data-tags="orange"><div class="img-wrap"><img data-name="Citrus" src="Citrus.jpeg" alt="Citrus"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Citrus</h3></div></div>
+    <div class="fruit-card reveal" data-name="Mosambi" data-tags="orange"><div class="img-wrap"><img data-name="Mosambi" src="Mosambi.jpeg" alt="Mosambi"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Mosambi</h3></div></div>
+    <div class="fruit-card reveal" data-name="Nagpur Orange" data-tags="orange"><div class="img-wrap"><img data-name="Nagpur Orange" src="Nagpur Orange.jpeg" alt="Nagpur Orange"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Nagpur Orange</h3></div></div>
+    <div class="fruit-card reveal" data-name="Anar Small" data-tags="exotic"><div class="img-wrap"><img data-name="Anar Small" src="Anar Small.jpeg" alt="Anar Small"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Anar Small</h3></div></div>
+    <div class="fruit-card reveal" data-name="Anar Big" data-tags="exotic"><div class="img-wrap"><img data-name="Anar Big" src="Anar Big.jpeg" alt="Anar Big"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Anar Big</h3></div></div>
+    <div class="fruit-card reveal" data-name="Red Globe" data-tags="exotic"><div class="img-wrap"><img data-name="Red Globe" src="Red Globe.jpeg" alt="Red Globe"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Red Globe</h3></div></div>
+    <div class="fruit-card reveal" data-name="Blueberry" data-tags="exotic"><div class="img-wrap"><img data-name="Blueberry" src="Blueberry.jpeg" alt="Blueberry"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Blueberry</h3></div></div>
+    <div class="fruit-card reveal" data-name="Zespri Kiwi" data-tags="exotic"><div class="img-wrap"><img data-name="Zespri Kiwi" src="Zespri Kiwi.jpeg" alt="Zespri Kiwi"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Zespri Kiwi</h3></div></div>
+    <div class="fruit-card reveal" data-name="Zespri Golden Kiwi" data-tags="exotic"><div class="img-wrap"><img data-name="Zespri Golden Kiwi" src="Zespri Golden Kiwi.jpeg" alt="Zespri Golden Kiwi"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Zespri Golden Kiwi</h3></div></div>
+    <div class="fruit-card reveal" data-name="Tanzania Avocado" data-tags="exotic"><div class="img-wrap"><img data-name="Tanzania Avocado" src="Tanzania Avocado.jpeg" alt="Tanzania Avocado"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Tanzania Avocado</h3></div></div>
+    <div class="fruit-card reveal" data-name="Local Avocado" data-tags="exotic"><div class="img-wrap"><img data-name="Local Avocado" src="Local Avocado.jpeg" alt="Local Avocado"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Local Avocado</h3></div></div>
+    <div class="fruit-card reveal" data-name="Watermelon" data-tags="exotic"><div class="img-wrap"><img data-name="Watermelon" src="Watermelon.jpeg" alt="Watermelon"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Watermelon</h3></div></div>
+    <div class="fruit-card reveal" data-name="Guava" data-tags="exotic"><div class="img-wrap"><img data-name="Guava" src="Guava.jpeg" alt="Guava"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Guava</h3></div></div>
+    <div class="fruit-card reveal" data-name="Sapota" data-tags="exotic"><div class="img-wrap"><img data-name="Sapota" src="Sapota.jpeg" alt="Sapota"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Sapota</h3></div></div>
+    <div class="fruit-card reveal" data-name="Pineapple" data-tags="exotic"><div class="img-wrap"><img data-name="Pineapple" src="Pineapple.jpeg" alt="Pineapple"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Pineapple</h3></div></div>
+    <div class="fruit-card reveal" data-name="Amla" data-tags="exotic"><div class="img-wrap"><img data-name="Amla" src="Amla.jpeg" alt="Amla"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Amla</h3></div></div>
+    <div class="fruit-card reveal" data-name="Lagoon" data-tags="exotic"><div class="img-wrap"><img data-name="Lagoon" src="Lagoon.jpeg" alt="Lagoon"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Lagoon</h3></div></div>
+    <div class="fruit-card reveal" data-name="Plums" data-tags="exotic"><div class="img-wrap"><img data-name="Plums" src="Plums.jpeg" alt="Plums"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Plums</h3></div></div>
+    <div class="fruit-card reveal" data-name="Persimmon" data-tags="exotic"><div class="img-wrap"><img data-name="Persimmon" src="Persimmon.jpeg" alt="Persimmon"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Persimmon</h3></div></div>
+    <div class="fruit-card reveal" data-name="Local grapes" data-tags="exotic"><div class="img-wrap"><img data-name="Local grapes" src="Grapes.jpeg" alt="Local grapes"><div class="card-overlay"><span>View Details</span></div></div><div class="meta"><h3>Local grapes</h3></div></div>
+  
+  </div>
+</section>
 
-  <script>
-    /* ── Custom Cursor ── */
-    const cursor = document.getElementById('cursor');
-    const ring = document.getElementById('cursorRing');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx+'px'; cursor.style.top = my+'px'; });
-    (function animateRing() {
-      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-      ring.style.left = rx+'px'; ring.style.top = ry+'px';
-      requestAnimationFrame(animateRing);
-    })();
-    document.querySelectorAll('a, button, .fruit-card, .tag, input').forEach(el => {
-      el.addEventListener('mouseenter', () => { cursor.classList.add('hovered'); ring.classList.add('hovered'); });
-      el.addEventListener('mouseleave', () => { cursor.classList.remove('hovered'); ring.classList.remove('hovered'); });
-    });
+<!-- CONTACT -->
+<section id="contact" aria-labelledby="contact-title">
+  <div class="section-label">Reach Out</div>
+  <h2 id="contact-title">Contact Us</h2>
+  <p class="subtitle">We're just a tap away — visit us, DM us, or drop an email.</p>
+  <div class="contact-cards">
+    <a href="https://maps.app.goo.gl/zGjxAHiBzzacKcvR9" target="_blank" rel="noopener" class="contact-card reveal">
+      <div class="icon-wrap">📍</div>
+      <strong>Location</strong>
+      <span>Find us on Google Maps</span>
+    </a>
+    <a href="https://www.instagram.com/pr__fruits" target="_blank" rel="noopener" class="contact-card reveal">
+      <div class="icon-wrap">📸</div>
+      <strong>Instagram</strong>
+      <span>@pr__fruits</span>
+    </a>
+    <a href="mailto:prfruits2025@gmail.com" class="contact-card reveal">
+      <div class="icon-wrap">✉️</div>
+      <strong>Email</strong>
+      <span>prfruits2025@gmail.com</span>
+    </a>
+  </div>
+</section>
 
-    /* ── Sticky Header shrink ── */
-    const header = document.getElementById('header');
-    window.addEventListener('scroll', () => {
-      header.classList.toggle('scrolled', window.scrollY > 60);
-    });
+<footer>© 2018–2025 <strong>PR Fruits</strong> — Freshness You Can Trust.</footer>
 
-    /* ── Mobile nav ── */
-    const navToggle = document.getElementById('navToggle');
-    const mobileNav = document.getElementById('mobileNav');
-    navToggle.addEventListener('click', () => {
-      navToggle.classList.toggle('open');
-      mobileNav.classList.toggle('open');
-    });
-    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-      navToggle.classList.remove('open');
-      mobileNav.classList.remove('open');
-    }));
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Fruit detail">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+  <div class="lightbox-card">
+    <img id="lightboxImg" src="" alt="" />
+    <div class="lightbox-body">
+      <h3 id="lightboxTitle"></h3>
+      <p class="lb-desc" id="lightboxDesc"></p>
+      <div class="benefits-title">Health Benefits</div>
+      <div class="benefits-list" id="lightboxBenefits"></div>
+    </div>
+  </div>
+</div>
 
-    /* ── Active nav on scroll ── */
-    const sections = ['home','fruits','contact'];
-    const navLinks = document.querySelectorAll('#nav a');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#'+e.target.id));
-        }
-      });
-    }, { threshold: 0.3 });
-    sections.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
+<button class="back-top" id="backTop" aria-label="Back to top">↑</button>
 
-    /* ── Scroll reveal ── */
-    const revealObs = new IntersectionObserver(entries => {
-      entries.forEach((e, i) => {
-        if (e.isIntersecting) {
-          e.target.style.transitionDelay = (i % 8) * 0.06 + 's';
-          e.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+<script>
+const fruitData = {
+  "Banana Robusta": {
+    desc: "The most popular banana variety — thick, sweet, and energy-packed. Sourced from local farms in Karnataka, Robusta bananas are a daily staple.",
+    benefits: ["⚡ Instant energy", "💪 Rich in Potassium", "🧠 Mood booster (B6)", "🦴 Supports bone health", "🍃 Good for digestion"]
+  },
+  "Banana Elaichi": {
+    desc: "The tiny but mighty Elaichi banana is intensely sweet with a floral aroma. A favourite among children and those who prefer a concentrated flavour.",
+    benefits: ["🌿 High in fibre", "❤️ Heart friendly", "⚡ Quick energy", "😴 Aids sleep (Tryptophan)", "🦷 Good for teeth"]
+  },
+  "Banana Red": {
+    desc: "Richer in antioxidants than yellow bananas, Red bananas have a creamy texture with a hint of raspberry flavour — a true exotic treat.",
+    benefits: ["🛡️ Antioxidant rich", "👁️ Boosts eye health", "💊 High Vitamin C", "🩸 Regulates blood sugar", "💪 Muscle recovery"]
+  },
+  "Banana Nendra": {
+    desc: "A Kerala classic, Nendra bananas are larger, starchier and subtly sweet. Perfect for frying into chips or steaming as a healthy snack.",
+    benefits: ["🌾 High in starch", "🦴 Calcium-rich", "🩺 Digestive aid", "⚡ Sustained energy", "🌿 Gut friendly"]
+  },
+  "Custard Apple": {
+    desc: "Also known as Sitaphal, this creamy, sweet fruit is a tropical delight with a custardy texture. Grown in Deccan plateau regions.",
+    benefits: ["🧠 Brain health (B6)", "❤️ Heart protective", "🛡️ Immunity booster", "🌿 Anti-inflammatory", "💊 Iron-rich"]
+  },
+  "Dragon Fruit": {
+    desc: "Vibrant and exotic, Dragon Fruit is packed with antioxidants and has a mildly sweet flavour. Grown in Vietnam and now locally too.",
+    benefits: ["🛡️ Antioxidant powerhouse", "🦠 Prebiotic properties", "💊 High in Magnesium", "🩸 Regulates blood sugar", "⚖️ Supports weight loss"]
+  },
+  "Apple Washington": {
+    desc: "Classic Washington State apples — crisp, juicy, and balanced in sweetness. Imported for consistent premium quality.",
+    benefits: ["🍃 High in fibre", "❤️ Heart health", "🦷 Teeth cleansing", "🧠 Brain protective", "🛡️ Boosts immunity"]
+  },
+  "Apple Royal Gala (New Zealand)": {
+    desc: "Grown in the pristine orchards of New Zealand, Royal Gala apples are mildly sweet with a fine-grained texture — perfect for kids.",
+    benefits: ["💊 Vitamin C rich", "🍃 Dietary fibre", "⚖️ Aids weight management", "❤️ Lowers cholesterol", "🩺 Gut health"]
+  },
+  "Apple Royal Gala (France)": {
+    desc: "French Royal Gala apples are slightly more tart with a firmer bite, reflecting the cool European climate. Excellent for baking and eating fresh.",
+    benefits: ["🛡️ Rich in Quercetin", "❤️ Heart protective", "🍃 High fibre", "🧠 Anti-inflammatory", "💊 Vitamin A & C"]
+  },
+  "Apple Green": {
+    desc: "Tart and refreshing Granny Smith green apples — loved for their sharp flavour and crisp bite. Great for salads and snacking.",
+    benefits: ["⚖️ Low glycemic index", "🦷 Promotes oral health", "🍃 High in fibre", "🩸 Regulates blood sugar", "🛡️ Antioxidant rich"]
+  },
+  "Apple Fuji": {
+    desc: "Imported from Japan's finest orchards, Fuji apples are exceptionally sweet, dense and crunchy — among the most popular varieties worldwide.",
+    benefits: ["❤️ Heart healthy", "🧠 Memory support", "💊 Vitamin C", "🍃 Pectin-rich fibre", "🛡️ Boosts immunity"]
+  },
+  "South African Pears": {
+    desc: "Succulent and buttery, South African pears are handpicked at peak ripeness and air-freighted to ensure freshness at its finest.",
+    benefits: ["🍃 High in dietary fibre", "💊 Vitamin K", "❤️ Reduces inflammation", "⚖️ Weight-friendly", "🩺 Gut health"]
+  },
+  "South African Mandarin": {
+    desc: "Bright, juicy and seedless — South African Mandarins are easy to peel and bursting with citrus sweetness. Perfect for the whole family.",
+    benefits: ["💊 Vitamin C powerhouse", "🛡️ Immune booster", "🌿 Anti-inflammatory", "🩸 Improves blood circulation", "✨ Skin glow"]
+  },
+  "Citrus": {
+    desc: "A curated selection of fresh citrus fruits, chosen for their vibrant flavour, juiciness and high Vitamin C content.",
+    benefits: ["💊 High Vitamin C", "🛡️ Immune support", "❤️ Heart health", "✨ Skin health", "🩺 Digestive aid"]
+  },
+  "Mosambi": {
+    desc: "Sweet lime (Mosambi) is a beloved Indian citrus fruit, mildly sweet and great for fresh juice. A cooling, hydrating daily essential.",
+    benefits: ["💧 Hydrating", "🩺 Aids digestion", "🛡️ Immunity booster", "✨ Clear skin", "🔋 Energy refresher"]
+  },
+  "Nagpur Orange": {
+    desc: "The famous Nagpur Orange — India's GI-tagged pride. Juicy, tangy-sweet and deeply aromatic. Best consumed fresh or as juice.",
+    benefits: ["💊 Vitamin C", "❤️ Heart protective", "🩸 Iron absorption", "🌿 Anti-inflammatory", "✨ Anti-aging"]
+  },
+  "Anar Small": {
+    desc: "Small in size, mighty in nutrition — these pomegranates are packed with jewel-like arils that are sweet-tart and incredibly antioxidant-rich.",
+    benefits: ["🛡️ Super antioxidant", "❤️ Lowers blood pressure", "🌿 Anti-inflammatory", "🧠 Memory support", "🩸 Rich in iron"]
+  },
+  "Anar Big": {
+    desc: "Large, premium pomegranates with plump, deeply pigmented arils. Each fruit is a treasure chest of nutrition and flavour.",
+    benefits: ["🛡️ Highest antioxidants", "❤️ Heart health", "🩸 Blood purifier", "💪 Anti-aging", "🌿 Anti-cancer properties"]
+  },
+  "Red Globe": {
+    desc: "Large, round and deep-red — Red Globe grapes are crunchy, mildly sweet and make a stunning addition to any fruit platter.",
+    benefits: ["❤️ Heart protective", "🛡️ Resveratrol-rich", "🦴 Bone health", "🧠 Brain function", "🌿 Anti-inflammatory"]
+  },
+  "Blueberry": {
+    desc: "Tiny blue powerhouses — our imported blueberries are plump, sweet-tart and loaded with some of the highest antioxidant levels of any fruit.",
+    benefits: ["🧠 #1 brain food", "🛡️ Antioxidant king", "❤️ Heart health", "🩸 Lowers blood pressure", "👁️ Eye protection"]
+  },
+  "Zespri Kiwi": {
+    desc: "The world's finest kiwi brand — Zespri Green Kiwis from New Zealand are tangy-sweet, packed with Vitamin C and a signature zingy bite.",
+    benefits: ["💊 2x Vitamin C of oranges", "🍃 High in fibre", "😴 Improves sleep quality", "❤️ Heart health", "💧 Aids hydration"]
+  },
+  "Zespri Golden Kiwi": {
+    desc: "Sweeter and milder than the green variety, Zespri Golden Kiwi has a smooth, bronze skin and a tropical, honey-like flavour.",
+    benefits: ["💊 Highest Vitamin C", "✨ Skin health", "🩺 Digestive enzymes", "🛡️ Immune support", "⚖️ Low calorie"]
+  },
+  "Tanzania Avocado": {
+    desc: "Large and creamy, Tanzania avocados are imported for their buttery flesh and mild flavour — perfect for guacamole, toast and smoothies.",
+    benefits: ["❤️ Healthy fats (MUFA)", "🧠 Brain nourishing", "🌿 Folate-rich", "💊 Vitamin K & E", "⚖️ Keeps you full"]
+  },
+  "Local Avocado": {
+    desc: "Locally grown avocados with a rich, nutty flavour. Fresher than imported, these are a sustainable and delicious choice.",
+    benefits: ["❤️ Good cholesterol", "🌿 Potassium-rich", "🧠 Mental clarity", "✨ Skin moisturizer", "💊 B-vitamins"]
+  },
+  "Watermelon": {
+    desc: "Nothing says summer like a perfectly ripe watermelon — crisp, refreshing and naturally sweet. Sourced from trusted local farms.",
+    benefits: ["💧 92% water content", "❤️ Lycopene for heart", "⚡ Pre-workout fuel", "✨ Skin hydration", "🩺 Kidney friendly"]
+  },
+  "Guava": {
+    desc: "A humble Indian superfood — our guavas are fragrant, crisp and incredibly rich in Vitamin C. Available in white and pink flesh varieties.",
+    benefits: ["💊 4x Vitamin C of oranges", "🍃 Highest dietary fibre", "🩸 Regulates blood sugar", "✨ Skin brightener", "🛡️ Immunity booster"]
+  },
+  "Sapota": {
+    desc: "Sapota (Chikoo) is a beloved Indian fruit with a grainy, brown flesh that tastes like a blend of caramel and honey. A comforting, wholesome fruit.",
+    benefits: ["⚡ Quick energy", "🍃 High fibre", "🦴 Calcium & Phosphorus", "🛡️ Antioxidant tannins", "🩺 Anti-inflammatory"]
+  },
+  "Pineapple": {
+    desc: "Tropical, tangy and intensely sweet — our pineapples are sourced for peak ripeness. Great for juicing, grilling or eating fresh.",
+    benefits: ["🔥 Bromelain enzyme", "🛡️ Immune support", "🩺 Reduces inflammation", "🦴 Bone strength", "💊 Vitamin C & Mn"]
+  },
+  "Amla": {
+    desc: "The ancient Indian superfruit — Amla (Indian Gooseberry) is tart, astringent and loaded with one of nature's highest concentrations of Vitamin C.",
+    benefits: ["💊 Richest Vitamin C source", "✨ Hair & skin health", "🧠 Memory booster", "🩺 Liver detox", "🛡️ Super immunity"]
+  },
+  "Lagoon": {
+    desc: "A premium exotic variety freshly stocked at PR Fruits. Known for its unique profile and outstanding freshness.",
+    benefits: ["🛡️ Rich in antioxidants", "💊 Natural vitamins", "🍃 Dietary fibre", "❤️ Heart supportive", "⚡ Energy boosting"]
+  },
+  "Plums": {
+    desc: "Sweet-tart and beautifully pigmented, our imported plums are soft, juicy and rich in antioxidants. Great for snacking or desserts.",
+    benefits: ["🩺 Digestive health", "🦴 Bone density", "🧠 Brain protective", "🛡️ High in antioxidants", "🩸 Iron absorption"]
+  },
+  "Persimmon": {
+    desc: "An autumn jewel — Persimmons are honey-sweet when fully ripe with a jelly-like texture. A unique and nutritious exotic fruit.",
+    benefits: ["💊 Vitamin A & C", "❤️ Heart health", "🛡️ High antioxidants", "🍃 Dietary fibre", "✨ Anti-aging"]
+  }
+};
 
-    /* ── Back to top ── */
-    const backTop = document.getElementById('backTop');
-    window.addEventListener('scroll', () => backTop.classList.toggle('visible', window.scrollY > 400));
-    backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx+'px'; cursor.style.top = my+'px'; });
+(function animateRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(animateRing); })();
+document.querySelectorAll('a, button, .fruit-card, .tag, input').forEach(el => {
+  el.addEventListener('mouseenter', () => { cursor.classList.add('hovered'); ring.classList.add('hovered'); });
+  el.addEventListener('mouseleave', () => { cursor.classList.remove('hovered'); ring.classList.remove('hovered'); });
+});
 
-    /* ── Broken image fallback ── */
-    document.querySelectorAll('.fruit-card img').forEach(img => {
-      img.onerror = function() {
-        this.onerror = null;
-        const name = encodeURIComponent(this.dataset.name || 'Fruit');
-        this.src = 'https://via.placeholder.com/400x300/e8f5ec/1a5c35?text=' + name;
-      };
-    });
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 60); });
 
-    /* ── Search & Filter ── */
-    const searchInput = document.getElementById('searchInput');
-    const filterTags = document.querySelectorAll('.tag');
-    let activeFilter = 'all';
+const navToggle = document.getElementById('navToggle');
+const mobileNav = document.getElementById('mobileNav');
+navToggle.addEventListener('click', () => { navToggle.classList.toggle('open'); mobileNav.classList.toggle('open'); });
+mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { navToggle.classList.remove('open'); mobileNav.classList.remove('open'); }));
 
-    function applyFilters() {
-      const query = searchInput.value.toLowerCase().trim();
-      document.querySelectorAll('.fruit-card').forEach(card => {
-        const name = card.dataset.name.toLowerCase();
-        const tags = card.dataset.tags || '';
-        const matchSearch = !query || name.includes(query);
-        const matchFilter = activeFilter === 'all' || tags.includes(activeFilter);
-        card.style.display = (matchSearch && matchFilter) ? '' : 'none';
-      });
-      // show/hide empty state
-      const visible = [...document.querySelectorAll('.fruit-card')].filter(c => c.style.display !== 'none');
-      const existing = document.querySelector('.empty-state');
-      if (!visible.length) {
-        if (!existing) {
-          const msg = document.createElement('div');
-          msg.className = 'empty-state';
-          msg.innerHTML = '<div class="icon">🍃</div><p>No fruits found. Try a different search!</p>';
-          document.getElementById('fruitContainer').appendChild(msg);
-        }
-      } else { if (existing) existing.remove(); }
+const sections = ['home','mango-section','fruits','contact'];
+const navLinks = document.querySelectorAll('#nav a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#'+e.target.id));
     }
+  });
+}, { threshold: 0.3 });
+sections.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
 
-    searchInput.addEventListener('input', applyFilters);
-    filterTags.forEach(tag => {
-      tag.addEventListener('click', () => {
-        filterTags.forEach(t => t.classList.remove('active'));
-        tag.classList.add('active');
-        activeFilter = tag.dataset.filter;
-        applyFilters();
-      });
-    });
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) { e.target.style.transitionDelay = (i % 8) * 0.06 + 's'; e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-    /* ── Lightbox ── */
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxTitle = document.getElementById('lightboxTitle');
-    const lightboxDesc = document.getElementById('lightboxDesc');
-    const lightboxClose = document.getElementById('lightboxClose');
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => backTop.classList.toggle('visible', window.scrollY > 400));
+backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    const fruitFacts = {
-      default: 'A premium quality fruit, handpicked and freshly stocked at PR Fruits.'
-    };
+document.querySelectorAll('.fruit-card img').forEach(img => {
+  img.onerror = function() {
+    this.onerror = null;
+    const name = encodeURIComponent(this.dataset.name || 'Fruit');
+    this.src = 'https://via.placeholder.com/400x300/e8f5ec/1a5c35?text=' + name;
+  };
+});
 
-    document.querySelectorAll('.fruit-card').forEach(card => {
-      card.addEventListener('click', () => {
-        const name = card.dataset.name;
-        const img = card.querySelector('img');
-        lightboxImg.src = img.src;
-        lightboxImg.alt = name;
-        lightboxTitle.textContent = name;
-        lightboxDesc.textContent = fruitFacts[name] || fruitFacts.default;
-        lightbox.classList.add('open');
-        document.body.style.overflow = 'hidden';
-      });
-    });
-
-    function closeLightbox() {
-      lightbox.classList.remove('open');
-      document.body.style.overflow = '';
+const searchInput = document.getElementById('searchInput');
+const filterTags = document.querySelectorAll('.tag');
+let activeFilter = 'all';
+function applyFilters() {
+  const query = searchInput.value.toLowerCase().trim();
+  document.querySelectorAll('.fruit-card').forEach(card => {
+    const name = card.dataset.name.toLowerCase();
+    const tags = card.dataset.tags || '';
+    const matchSearch = !query || name.includes(query);
+    const matchFilter = activeFilter === 'all' || tags.includes(activeFilter);
+    card.style.display = (matchSearch && matchFilter) ? '' : 'none';
+  });
+  const visible = [...document.querySelectorAll('.fruit-card')].filter(c => c.style.display !== 'none');
+  const existing = document.querySelector('.empty-state');
+  if (!visible.length) {
+    if (!existing) {
+      const msg = document.createElement('div');
+      msg.className = 'empty-state';
+      msg.innerHTML = '<div class="icon">🍃</div><p>No fruits found. Try a different search!</p>';
+      document.getElementById('fruitContainer').appendChild(msg);
     }
-    lightboxClose.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-  </script>
+  } else { if (existing) existing.remove(); }
+}
+searchInput.addEventListener('input', applyFilters);
+filterTags.forEach(tag => {
+  tag.addEventListener('click', () => {
+    filterTags.forEach(t => t.classList.remove('active'));
+    tag.classList.add('active');
+    activeFilter = tag.dataset.filter;
+    applyFilters();
+  });
+});
+
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxTitle = document.getElementById('lightboxTitle');
+const lightboxDesc = document.getElementById('lightboxDesc');
+const lightboxBenefits = document.getElementById('lightboxBenefits');
+const lightboxClose = document.getElementById('lightboxClose');
+
+document.querySelectorAll('.fruit-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const name = card.dataset.name;
+    const img = card.querySelector('img');
+    const data = fruitData[name] || { desc: 'A premium quality fruit, handpicked and freshly stocked at PR Fruits.', benefits: ['🛡️ Rich in antioxidants', '💊 Natural vitamins', '🍃 Dietary fibre', '❤️ Heart supportive'] };
+    lightboxImg.src = img.src;
+    lightboxImg.alt = name;
+    lightboxTitle.textContent = name;
+    lightboxDesc.textContent = data.desc;
+    lightboxBenefits.innerHTML = data.benefits.map(b => `<div class="benefit-pill">${b}</div>`).join('');
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+});
+function closeLightbox() { lightbox.classList.remove('open'); document.body.style.overflow = ''; }
+lightboxClose.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
 </body>
 </html>
